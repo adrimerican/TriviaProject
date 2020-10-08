@@ -1,6 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+const bodyParser = require('body-parser');
+const User = require("./client/src/models/users");
 
 dotenv.config({ path: "./.env" });
 
@@ -8,6 +10,9 @@ const app = express();
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json({ extended: false }));
+app.use(bodyParser.json())
+
+const users = mongoose.model('users')
 
 mongoose.connect(process.env.DB_URL, {
     useNewUrlParser: true,
@@ -21,26 +26,30 @@ app.get("/", (req, res) => {
   res.send("Hello from NodeJS");
 });
 
-app.get("/myApi", (req, res) => {
-  res.status(200).json({
-    "Team1": "Man UTD",
-    "Score": "1-6",
-    "Team2": "Spurs",
-    "Score": "2-4",
-  });
-});
-
 app.post('/register', (req, res) => {
     console.log(req.body)
-
+  
     res.status(200).json({
       message: 'User Registered'
     })
+    let checkAdmin = false;
+    if (req.body.userAdmin) {
+      checkAdmin = true;
+    } else {
+      checkAdmin = false;
+    }
+
+    const user = new User({
+      name: req.body.userName,
+      email: req.body.userEmail,
+      password: req.body.userPassword,
+      admin: checkAdmin
+    }); 
+    
+    user.save();
 })
 
-app.delete('/deleteUser', (req, res) => {
-  
-})
+
 
 app.listen(5000, () => {
   console.log(`Server Is now running at port: 5000`);
