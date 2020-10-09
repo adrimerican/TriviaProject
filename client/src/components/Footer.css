@@ -1,13 +1,11 @@
-.footer {
-    background-color: black;
-    padding: 4rem 0 2rem 0;
-    width:100%;
-    position : absolute;
-    bottom : 0;
-    height : 40px;
-    margin-top : 40px;
-  }
+.footer{
+  position:absolute;
+   bottom:0;
+   width:100%;
+   height:60px;  
+   background:black;
+}
 
 .p{
-    line-height:0px;
+  line-height:0px;
 }

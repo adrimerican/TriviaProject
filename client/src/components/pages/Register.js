@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Navbar from '../Navbar'
 
 
 
@@ -65,6 +66,7 @@ const sendData = async (event) => {
 
   return (
     <div className='App'>
+      <Navbar/>
       <form onSubmit={sendData}>
         <label>Email</label>
        <input type='email' onChange={updateUser} name='email'/>
