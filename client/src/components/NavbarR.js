@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 
-function Navbar() {
+function NavbarR() {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
 
@@ -31,15 +31,24 @@ function Navbar() {
             QUIZ 
             <i class="fas fa-brain" />
           </Link>
+
+          <li className='nav-item'>
+              <Link to='/quiz' className='nav-links' onClick={closeMobileMenu}>
+                Quiz
+              </Link>
+            </li>
+
           <div className='menu-icon' onClick={handleClick}>
             <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
           </div>
-          <ul className={click ? 'nav-menu active' : 'nav-menu'}>
+
+          <ul className={click ? 'nav-menu active' : 'nav-menu'}> 
           </ul>
+         
         </div>
       </nav>
     </>
   );
 }
 
-export default Navbar;
+export default NavbarR;
