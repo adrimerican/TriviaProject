@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Navbar from '../Navbar'
+import './Register.css'
 
 
 
@@ -67,17 +68,35 @@ const sendData = async (event) => {
   return (
     <div className='App'>
       <Navbar/>
+      <div className="card">
+      <div class="register-box">
+        <h1>Register</h1>
       <form onSubmit={sendData}>
-        <label>Email</label>
-       <input type='email' onChange={updateUser} name='email'/>
-       <label>Password</label>
-       <input type='password' onChange={updateUser} name='password'/>
-       <label>Name</label>
-       <input type='string' onChange={updateUser} name='name'/>
-       <label>Admin?</label>
-       <input type='checkbox' onChange={updateUser} name='admin'/>
-       <button type='submit'>Register</button>
+
+      <div className="textbox">
+      <i class="fa fa-user" aria-hidden="true"></i>
+        <input type='string' onChange={updateUser} name='name' placeholder='Name'/>
+        </div>
+
+        <div className="textbox">
+          <i class="far fa-envelope"></i>
+       <input type='email' onChange={updateUser} name='email' placeholder='Email'/>
+        </div>
+
+        <div className="textbox">
+          <i class="fa fa-lock" aria-hidden="true"></i>
+       <input type='password' onChange={updateUser} name='password' placeholder='Password'/>
+        </div>
+
+        <div className="textboxLast">
+        <i class="fas fa-user-shield"></i>
+        <label className="label">Admin?</label>
+        <input type='checkbox' className="checkbox" onChange={updateUser} name='admin'/>
+        </div>
+       <button className="register-btn" type='submit'>Register</button>
       </form>
+      </div>
+      </div>
     </div>
   );  
 }

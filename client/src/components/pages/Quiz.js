@@ -1,12 +1,14 @@
-import React from 'react'
-import NavbarR from '../NavbarR'
+import React from 'react';
+import axios from "axios"
+import NavbarR from '../NavbarR';
+import Timer from '../Timer'
 
 function Quiz() {
     return (
         <div>
             <NavbarR/>
-            <h1>This is the quiz page</h1>
-            
+            <h1>Here's the quiz page</h1>
+            <Timer/>
         </div>
     )
 }
