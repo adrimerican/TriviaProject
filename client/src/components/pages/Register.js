@@ -3,8 +3,6 @@ import axios from 'axios';
 import Navbar from '../Navbar'
 import './Register.css'
 
-
-
 export default function Register(){
 
 const [user, setUser] = useState({
@@ -23,9 +21,6 @@ useEffect(() => {
   getApi();
 }, [])
 
-
-
-
 const updateUser = (event) => {
   console.log(event.target.value);
 
@@ -39,17 +34,12 @@ const sendData = async (event) => {
   event.preventDefault();
   console.log('Form Submitted'); 
 
-
-
   const body = JSON.stringify({
     userEmail: user.email,
     userPassword: user.password,
     userName: user.name,
     userAdmin: user.admin
   });
-
-
-
 
   const config = {
     headers: {
@@ -59,11 +49,6 @@ const sendData = async (event) => {
     const res = await axios.post('/register', body, config);
     console.log(res.data)
   }
-
-
-
-
-
 
   return (
     <div className='App'>

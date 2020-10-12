@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const bodyParser = require('body-parser');
 const User = require("./client/src/models/users");
+const bcrypt = require("bcryptjs");
 
 dotenv.config({ path: "./.env" });
 
@@ -26,8 +27,10 @@ app.get("/", (req, res) => {
   res.send("Hello from NodeJS");
 });
 
-app.post('/register', (req, res) => {
+app.post('/Register', async (req, res) => {
     console.log(req.body)
+const hashedPassword = await bcrypt.hash(req.body.userPassword, 8);
+
   
     res.status(200).json({
       message: 'User Registered'
@@ -42,7 +45,7 @@ app.post('/register', (req, res) => {
     const user = new User({
       name: req.body.userName,
       email: req.body.userEmail,
-      password: req.body.userPassword,
+      password: hashedPassword,
       admin: checkAdmin
     }); 
     
@@ -50,6 +53,27 @@ app.post('/register', (req, res) => {
 })
 
 
+app.post("/login", async (req, res) => {
+  const user = await User.find({ email: req.body.userEmail });
+  console.log(user);
+
+
+console.log(req.body.userPassword);
+  if (user.length > 0) {
+    console.log(user[0].password);
+    const isMatch = await bcrypt.compare(
+      req.body.userPassword,
+      user[0].password
+    );
+    console.log(isMatch);
+    if(isMatch === true){
+      res.redirect('/')
+    } 
+    else {
+      res.redirect('/')
+    }
+  }
+ });
 
 app.listen(5000, () => {
   console.log(`Server Is now running at port: 5000`);

@@ -16,7 +16,7 @@ class App extends Component {
       <Router>
       <Switch>
       <Route path='/' exact component= {Home}/>
-      <Route path='/login' exact component={Login}/>
+      <Route path='/login' exact component={Login} history={this.props.history}/>
       <Route path='/register' exact component={Register}/>
       <Route path='/dashboard' exact component={Dashboard}/>
       <Route path='/quiz' exact component={Quiz}/>
