@@ -45,6 +45,12 @@ function Navbar() {
                 Choose a quiz!
               </Link>
             </li>
+            <li className='nav-item'>
+              <Link to='/logout' className='nav-links' onClick={closeMobileMenu}>
+                Logout
+              </Link>
+            </li>
+            
           </ul>
         </div>
       </nav>

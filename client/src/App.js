@@ -6,6 +6,7 @@ import Home from './components/pages/Home';
 import Login from './components/pages/Login';
 import Register from './components/pages/Register';
 import Quiz from './components/pages/Quiz';
+import Logout from './components/pages/Logout';
 import Footer from './components/Footer';
 
 class App extends Component { 
@@ -20,6 +21,7 @@ class App extends Component {
       <Route path='/register' exact component={Register}/>
       <Route path='/dashboard' exact component={Dashboard}/>
       <Route path='/quiz' exact component={Quiz}/>
+      <Route path='/logout' exact component={Logout}/>
       </Switch>
       </Router>
       <Footer/>
