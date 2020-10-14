@@ -1,27 +1,40 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
+import '../app.css';
+import './game.css';
+import axios from 'axios';
 
-function App() {
-   const question = document.getElementById('question');
-    const choices = Array.from(document.getElementsByClassName('choice-text'));
-    const progressText = document.getElementById('progressText');
-    const scoreText = document.getElementById('score');
-    const progressBarFull = document.getElementById('progressBarFull');
-    const loader = document.getElementById('loader');
-    const game = document.getElementById('game'); 
-    let currentQuestion = {};
+export default function App() {
+   const [question, setQuestion] = useState[0];
+    const [choiceText, setChoiceText] = setState();// Can just pass a onclick instead of this.
+    const [progressText, setProgressText] = useState();
+    const [scoreText, setScore] = useState(0); //insdie of compo return put {} instead. Coming from state on load. 
+    const [progressBarFull, setProgressBarFull] = useState(0);
+    const [loader, setLoader] = useState();
+    const [game, setGame] = useState(true);
+
+    let currentQuestion = {}; 
     let acceptingAnswers = false;
     let score = 0;
     let questionCounter = 0;
     let availableQuesions = [];
-    
     let questions = [];
-    
-    fetch(
-        'https://opentdb.com/api.php?amount=10&category=18&type=multiple'
-    )
-        .then((res) => {
+    //create inside of state
+    //need to be inside of state
+    //this.state
+    const [questions, Question] = useState({
+			api: 'https://opentdb.com/api.php?amount=10&category=10&type=multiple',
+			question: []
+		  });
+		  
+		  useEffect(() => {
+			getApi();
+		  }, [])
+		  
+		  const getApi = async () => {
+        const res = await axios.get('https://opentdb.com/api.php?amount=10')
+         .then((res) => {
             return res.json();
         })
         .then((loadedQuestions) => {
@@ -40,16 +53,21 @@ function App() {
     
                 answerChoices.forEach((choice, index) => {
                     formattedQuestion['choice' + (index + 1)] = choice;
-                });
-    
-                return formattedQuestion;
-            });
-    
-            startGame();
+                })
+                    startGame();
         })
         .catch((err) => {
             console.error(err);
         });
+    
+                return formattedQuestion;
+            });
+			  console.log(res.data)
+
+		  },
+       
+    
+        
     
     //CONSTANTS
     const CORRECT_BONUS = 10;
@@ -118,14 +136,8 @@ function App() {
     };
     return (
         <div className='App'>
-          <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Quick Quiz - Play</title>
-    <link rel="stylesheet" href="app.css" />
-    <link rel="stylesheet" href="game.css" />
-  </head>
+   
+   
   <body>
     <div class="container">
       <div id="loader"></div>
@@ -148,14 +160,14 @@ function App() {
             </h1>
           </div>
         </div>
-        <h2 id="question"></h2>
+         <h2 id="question"></h2>
         <div class="choice-container">
           <p class="choice-prefix">A</p>
           <p class="choice-text" data-number="1"></p>
         </div>
         <div class="choice-container">
           <p class="choice-prefix">B</p>
-          <p class="choice-text" data-number="2"></p>
+          <p class="choiceText" data-number="2"></p>
         </div>
         <div class="choice-container">
           <p class="choice-prefix">C</p>
@@ -167,10 +179,9 @@ function App() {
         </div>
       </div>
     </div>
-    <script src="game.js"></script>
   </body>
         </div>
       );  
 }
 
-export default App;
+
