@@ -6,6 +6,7 @@ import Timer from '../Timer'
 function Quiz() {
 
 
+
 const getQuestionsFromAPI = async () => {
     try {
         const response = await axios.get('https://opentdb.com/api.php?amount=10')//instead of hard coded, have `` to change state choice.
@@ -71,8 +72,6 @@ export { createQuizData }
             <NavbarR/>
             <h1>Here's the quiz page</h1>
             <Timer/>
-
-            
         </div>
     )
 }
