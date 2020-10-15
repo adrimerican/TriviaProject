@@ -1,9 +1,8 @@
-import React from 'react';
 import axios from "axios"
-import NavbarR from '../NavbarR';
-import Timer from '../Timer'
 
-function Quiz() {
+
+
+//function Opentdb() {
 
 
 
@@ -32,10 +31,10 @@ const formatChoices = choices => {
 }
 const combineAllChoices = question => question.correct_answer.split(',').concat(question.incorrect_answers)
 
-questionCounter++;
-        progressText.innerText = `Question ${questionCounter}/${MAX_QUESTIONS}`;
-        //Update the progress bar
-        progressBarFull.style.width = `${(questionCounter / MAX_QUESTIONS) * 100}%`;
+// questionCounter++;
+//         progressText.innerText = `Question ${questionCounter}/${MAX_QUESTIONS}`;
+//         //Update the progress bar
+//         progressBarFull.style.width = `${(questionCounter / MAX_QUESTIONS) * 100}%`;
     
 const formatQuestion = (question, index) => {
     return {
@@ -67,13 +66,3 @@ const createQuizData = async () => {
 }
 
 export { createQuizData }
-    return (
-        <div>
-            <NavbarR/>
-            <h1>Here's the quiz page</h1>
-            <Timer/>
-        </div>
-    )
-}
-
-export default Quiz

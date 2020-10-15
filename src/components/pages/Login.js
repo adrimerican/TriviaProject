@@ -1,14 +1,18 @@
 import React, { useState, useEffect, setState } from 'react';
-import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Navbar from '../Navbar' 
 import axios from 'axios';
 import './Login.css'
+import { Redirect } from 'react-router'
+import { withRouter } from "react-router-dom";
 
-export default function Login(){
+
+const Login = (props) => { 
+  console.log(props)
 
 const [user, setUser] = useState({
   email: '',
   password: '',
+  isLoggedIn: false,
   posts: []
 });
 
@@ -22,6 +26,7 @@ const updateUser = (event) => {
 }
 
 const sendData = async (event) => {
+
   event.preventDefault();
   console.log('Form Submitted'); 
   console.log(user.password);
@@ -29,9 +34,7 @@ const sendData = async (event) => {
 
   const body = JSON.stringify({
     userEmail: user.email,
-    userPassword: user.password,
-    userName: user.name,
-    userAdmin: user.admin
+    userPassword: user.password
   });
 
 const config = {
@@ -40,13 +43,15 @@ const config = {
   }
   }
   const res = await axios.post('/login', body, config)
-  console.log(res.data)
-  }
-  if(user.admin === true){
-    console.log('user.admin is true.') 
+  console.log(res.data)  
+  if(res.data.isLoggedIn === true){
+    return(
+      props.history.push('/dashboard')
+  )
   } else {
-    console.log('user.admin is false.')
-  }
+    this.setState({alert_message: 'FAILURE -- INCORRECT CREDENTIALS'})
+  } 
+}
 
 return (
   <div className='App'>
@@ -74,3 +79,5 @@ return (
   </div>
 )
 }
+
+export default withRouter(Login);

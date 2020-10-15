@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import AnswerKey from './AnswerKey'
-import { Button, Well } from 'react-bootstrap'
-import Axios from 'axios'
+import { Button } from 'react-bootstrap'
+//import axios from 'axios'
 
 class Results extends Component {
     createScoreMessage(percent) {
@@ -19,15 +19,10 @@ class Results extends Component {
     }
 
     render() {
-        var percent = (this.props.score / this.props.questions.length * 100)
-
-    axios.post(req, res) = {
-
-    }
-
+        let percent = (this.props.score / this.props.questions.length * 100)
         return (
             <div>
-                <Well>
+                <div>
                     <center>
                         <h4>You Got {this.props.score} out of {this.props.questions.length} Correct</h4>
                         <h1>{percent}%</h1>
@@ -39,14 +34,14 @@ class Results extends Component {
                     <center>
                         <Button bsStyle="success" href="/">Take Again</Button>
                     </center>
-                </Well>
-                <Well>
+                </div>
+                <div>
                     <center>
                         <h3>Answer Key</h3>
                     </center>
                     <hr />
                     <AnswerKey questions={this.props.questions} />
-                </Well>
+                </div>
             </div >
         )
     }

@@ -1,17 +1,17 @@
 import React, { Component } from 'react'
-import { Button, ListGroup, ListGroupItem, Well, Row, Col } from 'react-bootstrap'
+import { Button, ListGroup, ListGroupItem, Row, Col } from 'react-bootstrap'
 
 var results = []
 
 class Question extends Component {
-    onChange(choice, event) {
+    onChange(choices, event) {
         event.preventDefault()
         const { setCurrent, setScore, question } = this.props
-        if (choice === question.correct) {
+        if (choices === question.correct) {
             results.push('✓')
             setScore(this.props.score + 1)
             setCurrent(this.props.current + 1)
-        } else if (choice !== question.correct) {
+        } else if (choices !== question.correct) {
             results.push('X')
             setCurrent(this.props.current + 1)
         } else {
@@ -31,13 +31,14 @@ class Question extends Component {
     }
 
     render() {
-        const { question } = this.props
+        const question  = this.props 
+        //console.log(question)
         return (
             <div>
                 {
                     results.length === 0
                         ? <div></div>
-                        : <Well bsStyle="small">
+                        : <div bsStyle="small">
                             <div className="results">
                                 <div className="center">
                                     {
@@ -59,9 +60,9 @@ class Question extends Component {
                                     }
                                 </div>
                             </div>
-                        </Well>
+                        </div>
                 }
-                <Well>
+                <div>
                     <h3><center>{question.text}</center></h3>
                     <hr />
                     <ListGroup>
@@ -69,11 +70,11 @@ class Question extends Component {
                             this.shuffleChoices(question.choices).map((choice, index) => {
                                 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
                                 return (
-                                    <ListGroupItem key={`choice_${index}`} onClick={this.onChange.bind(this, choice.text)}>
+                                    <ListGroupItem key={`choices_${index}`} onClick={this.onChange.bind(this, choice.text)}>
                                         <Button
                                             bsStyle={'primary'}
                                             name={question.id}
-                                            key={`choice_button_${index}`}
+                                            key={`choices_button_${index}`}
                                         >
                                             {alphabet[index]}
                                         </Button>
@@ -91,7 +92,7 @@ class Question extends Component {
                             {question.difficulty}
                         </Col>
                     </Row>
-                </Well>
+                </div>
             </div>
         )
     }

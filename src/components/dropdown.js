@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 
 
+
 class DropdownMenu extends Component {
 
   constructor() {
@@ -9,6 +10,7 @@ class DropdownMenu extends Component {
 
     this.state = {
       showMenu: false,
+      
     };
 
     this.showMenu = this.showMenu.bind(this);
@@ -36,8 +38,8 @@ class DropdownMenu extends Component {
           this.state.showMenu
             ? (
               <div className="menu">
-                <button> Menu item 1 </button>
-                <button> Menu item 2 </button>
+                <button> Books </button>
+                <button href=""> General Knowledge </button>
                 <button> Menu item 3 </button>
               </div>
             )
