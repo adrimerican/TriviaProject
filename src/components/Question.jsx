@@ -4,6 +4,7 @@ import { Button, ListGroup, ListGroupItem, Row, Col } from 'react-bootstrap'
 var results = []
 
 class Question extends Component {
+    const question  = this.props 
     onChange(choices, event) {
         event.preventDefault()
         const { setCurrent, setScore, question } = this.props
@@ -30,8 +31,10 @@ class Question extends Component {
         return choices
     }
 
+    
+
     render() {
-        const question  = this.props 
+        
         //console.log(question)
         return (
             <div>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import 
 
 
 
@@ -10,7 +11,7 @@ class DropdownMenu extends Component {
 
     this.state = {
       showMenu: false,
-      
+
     };
 
     this.showMenu = this.showMenu.bind(this);
@@ -29,7 +30,10 @@ class DropdownMenu extends Component {
     this.setState({ showMenu: false }, () => {
       document.removeEventListener('click', this.closeMenu);
     });
-  }
+
+   
+    }
+  
   render() {
 
     return (
@@ -40,7 +44,10 @@ class DropdownMenu extends Component {
               <div className="menu">
                 <button> Books </button>
                 <button href=""> General Knowledge </button>
-                <button> Menu item 3 </button>
+                <button> Sports</button>
+                <button> Films</button>
+                <button> Video Games</button>
+                <button> Computer Science</button>
               </div>
             )
             : (
@@ -49,7 +56,7 @@ class DropdownMenu extends Component {
         }
       </div>
     );
-  }
+  };
 }
 
 export default DropdownMenu;
